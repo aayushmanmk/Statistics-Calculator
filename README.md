@@ -49,10 +49,10 @@ Button MODE     | D5
    - `LiquidCrystal_I2C.h`
    - `Servo.h`
 3. Clone this repository or download the ZIP file
-4. Open the `.ino` file in Arduino IDE
+4. Open the `Code.ino` file in Arduino IDE
 5. Upload the sketch to your Arduino board
 
-## 📖 Usage Guide
+## 📖 Usage Guide (Check Manual.html for comprehensive guide)
 
 ### Main Menu
 
