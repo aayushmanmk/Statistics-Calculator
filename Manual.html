@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISC-11 Statistics Calculator - User Manual</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .manual-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 1200px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .manual-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #3498db, #2980b9, #1abc9c, #16a085);
+        }
+        
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header h2 {
+            margin: 10px 0 0 0;
+            font-size: 1.2em;
+            font-weight: 400;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid #e9ecef;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.15);
+            border-left-color: #3498db;
+        }
+        
+        .section-title {
+            color: #495057;
+            font-weight: 600;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-radius: 2px;
+        }
+        
+        .features-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .features-list li {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 3px solid #3498db;
+            font-size: 0.9em;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        th {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px 10px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 0.85em;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .delete-highlight {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+        
+        .process-steps {
+            counter-reset: step-counter;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .process-steps li {
+            counter-increment: step-counter;
+            margin-bottom: 10px;
+            padding-left: 40px;
+            position: relative;
+            background: white;
+            padding: 15px 15px 15px 50px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .process-steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 25px;
+            height: 25px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.8em;
+        }
+        
+        .formula-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .formula-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #3498db;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .formula-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(52, 152, 219, 0.2);
+        }
+        
+        .formula-title {
+            color: #495057;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: #3498db;
+        }
+        
+        .formula {
+            background: #f1f3f4;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            margin: 10px 0;
+        }
+        
+        .visualization-section {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .visualization-section .section-title {
+            color: white;
+        }
+        
+        .visualization-section .section-title::before {
+            background: white;
+        }
+        
+        .viz-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .viz-card {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .viz-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            background: rgba(255,255,255,0.15);
+        }
+        
+        .viz-card h4 {
+            margin: 0 0 10px 0;
+            font-size: 1.1em;
+        }
+        
+        .color-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .example-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+        }
+        
+        .example-data {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 4px solid #1abc9c;
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 30px;
+            font-size: 0.9em;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+            opacity: 0.9;
+        }
+        
+        .footer .version {
+            font-weight: 600;
+            color: #3498db;
+        }
+        
+        /* Print-friendly styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .manual-container {
+                box-shadow: none;
+                padding: 20px;
+                width: 100%;
+                max-width: none;
+            }
+            
+            .header {
+                background: #3498db !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+            
+            .card, .formula-section, .visualization-section, .example-section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            
+            .delete-highlight {
+                background: #e74c3c !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+        
+        /* Accessibility improvements */
+        .card:focus-within,
+        .formula-card:focus-within,
+        .viz-card:focus-within {
+            outline: 3px solid #3498db;
+            outline-offset: 2px;
+        }
+        
+        /* Enhanced animations */
+        .card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        
+        /* Quick navigation */
+        .quick-nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(52, 152, 219, 0.9);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            font-size: 0.9em;
+        }
+        
+        .quick-nav h3 {
+            margin: 0 0 10px 0;
+            font-size: 1em;
+        }
+        
+        .quick-nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .quick-nav li {
+            margin: 5px 0;
+        }
+        
+        .quick-nav a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+        
+        .quick-nav a:hover {
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .quick-nav {
+                position: static;
+                margin-bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .manual-container {
+                padding: 20px;
+                margin: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+        
+        /* Visualization detail styles */
+        .viz-detail {
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+            border-left: 3px solid rgba(255,255,255,0.3);
+        }
+        
+        .viz-detail h5 {
+            margin: 0 0 8px 0;
+            font-size: 0.95em;
+            color: #3498db;
+        }
+        
+        .viz-detail p {
+            margin: 5px 0;
+            font-size: 0.85em;
+            line-height: 1.4;
+        }
+        
+        .brightness-scale {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 0.8em;
+        }
+        
+        .brightness-bar {
+            flex: 1;
+            height: 8px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.2), rgba(255,255,255,1));
+            border-radius: 4px;
+            margin: 0 10px;
+        }
+        
+        .servo-position {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 0.8em;
+        }
+        
+        .servo-bar {
+            flex: 1;
+            height: 8px;
+            background: linear-gradient(90deg, #e74c3c, #f39c12, #27ae60);
+            border-radius: 4px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="quick-nav">
+        <h3>📋 Quick Navigation</h3>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#buttons">Buttons</a></li>
+            <li><a href="#process">Data Input</a></li>
+            <li><a href="#calculations">Statistics</a></li>
+            <li><a href="#formulas">Formulae</a></li>
+            <li><a href="#visualization">Visualization</a></li>
+            <li><a href="#example">Example</a></li>
+        </ul>
+    </div>
+    
+    <div class="manual-container">
+        <div class="header">
+            <h1>ISC-11 STATISTICS CALCULATOR</h1>
+            <h2>USER MANUAL</h2>
+        </div>
+
+        <div class="content-grid">
+            <div class="card" id="overview">
+                <div class="section-title">DEVICE OVERVIEW</div>
+                <p>Advanced Arduino-based Statistical Calculator featuring 16×2 LCD Display, RGB LED Visualization, and Servo Motor Position Indicators for comprehensive data analysis.</p>
+            </div>
+
+            <div class="card" id="features">
+                <div class="section-title">KEY FEATURES</div>
+                <ul class="features-list">
+                    <li>16×2 Character LCD Display</li>
+                    <li>RGB LED Data Visualization</li>
+                    <li>Servo Motor Position Indicators</li>
+                    <li>10 Statistical Calculations</li>
+                    <li>Frequency-based Data Input</li>
+                    <li>Histogram Visualization</li>
+                </ul>
+            </div>
+
+            <div class="card" id="buttons">
+                <div class="section-title">BUTTON FUNCTIONS</div>
+                <table>
+                    <tr>
+                        <th><strong>Button</strong></th>
+                        <th><strong>Function</strong></th>
+                    </tr>
+                    <tr>
+                        <td>🔼 UP</td>
+                        <td>Increase Value / Navigate Up</td>
+                    </tr>
+                    <tr>
+                        <td>🔽 DOWN</td>
+                        <td>Decrease Value / Navigate Down</td>
+                    </tr>
+                    <tr>
+                        <td>✓ ENTER</td>
+                        <td>Confirm Selection / Save Data</td>
+                    </tr>
+                    <tr>
+                        <td>↩ BACK</td>
+                        <td>Return to Previous Menu</td>
+                    </tr>
+                </table>
+                <div class="delete-highlight">
+                    🗑️ DELETE ENTRY: Long press ENTER (2 seconds) to delete last entry
+                </div>
+            </div>
+
+            <div class="card" id="process">
+                <div class="section-title">DATA INPUT PROCESS</div>
+                <ol class="process-steps">
+                    <li>Select "Input Data" from main menu</li>
+                    <li>Enter numerical value using UP/DOWN</li>
+                    <li>Press ENTER to confirm value</li>
+                    <li>Enter frequency using UP/DOWN</li>
+                    <li>Press ENTER to save data pair</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="card" id="calculations">
+            <div class="section-title">STATISTICAL CALCULATIONS</div>
+            <table>
+                <tr>
+                    <th><strong>Calculation</strong></th>
+                    <th><strong>Definition</strong></th>
+                </tr>
+                <tr>
+                    <td>Count</td>
+                    <td>Total number of observations</td>
+                </tr>
+                <tr>
+                    <td>Mean</td>
+                    <td>Average value of all data points</td>
+                </tr>
+                <tr>
+                    <td>Minimum</td>
+                    <td>Smallest value in the dataset</td>
+                </tr>
+                <tr>
+                    <td>Maximum</td>
+                    <td>Largest value in the dataset</td>
+                </tr>
+                <tr>
+                    <td>Std Deviation</td>
+                    <td>Measure of data dispersion</td>
+                </tr>
+                <tr>
+                    <td>Variance</td>
+                    <td>Square of standard deviation</td>
+                </tr>
+                <tr>
+                    <td>MAD</td>
+                    <td>Mean Absolute Deviation</td>
+                </tr>
+                <tr>
+                    <td>Median</td>
+                    <td>Middle value of sorted data</td>
+                </tr>
+                <tr>
+                    <td>Mode</td>
+                    <td>Most frequently occurring value</td>
+                </tr>
+                <tr>
+                    <td>Histogram</td>
+                    <td>Visual distribution of data</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="formula-section" id="formulas">
+            <div class="section-title">STATISTICAL FORMULAE AND DEFINITIONS</div>
+            
+            <div class="formula-card">
+                <div class="formula-title">MEAN (Average)</div>
+                <div class="formula">x̄ = Σ(fi × xi) / Σ(fi)</div>
+                <p><strong>Where:</strong> xi = individual values, fi = frequencies</p>
+                <p><strong>Definition:</strong> The arithmetic mean represents the central tendency of the data.</p>
+            </div>
+
+            <div class="formula-card">
+                <div class="formula-title">VARIANCE</div>
+                <div class="formula">σ² = Σ(fi × (xi - x̄)²) / Σ(fi)</div>
+                <p><strong>Definition:</strong> Variance measures how far each number in the set is from the mean. It represents the spread of data points around the mean.</p>
+            </div>
+
+            <div class="formula-card">
+                <div class="formula-title">STANDARD DEVIATION</div>
+                <div class="formula">σ = √σ²</div>
+                <p><strong>Definition:</strong> Standard deviation is the square root of variance. It provides a measure of the amount of variation or dispersion in the dataset.</p>
+            </div>
+
+            <div class="formula-card">
+                <div class="formula-title">MEAN ABSOLUTE DEVIATION (MAD)</div>
+                <div class="formula">MAD = Σ(fi × |xi - x̄|) / Σ(fi)</div>
+                <p><strong>Definition:</strong> MAD measures the average distance between each data point and the mean. It's less sensitive to outliers than standard deviation.</p>
+            </div>
+
+            <div class="formula-card">
+                <div class="formula-title">MEDIAN</div>
+                <p><strong>Definition:</strong> The middle value of a sorted dataset. If the dataset has an even number of observations, it's the average of the two middle values.</p>
+            </div>
+
+            <div class="formula-card">
+                <div class="formula-title">MODE</div>
+                <p><strong>Definition:</strong> The value that appears most frequently in the dataset. A dataset can have one mode, multiple modes, or no mode.</p>
+            </div>
+        </div>
+
+        <div class="visualization-section" id="visualization">
+            <div class="section-title">VISUALIZATION FEATURES</div>
+            <div class="viz-features">
+                <div class="viz-card">
+                    <h4>🌈 RGB LED INDICATOR</h4>
+                    <p>RGB LED provides real-time visual feedback on data characteristics:</p>
+                    <p><span class="color-indicator" style="background: #FF0000;"></span>🔴 RED: Skewness (how asymmetric the data distribution is)</p>
+                    <p><span class="color-indicator" style="background: #00FF00;"></span>🟢 GREEN: Mean centrality (how well-centered the mean is within the data range)</p>
+                    <p><span class="color-indicator" style="background: #0000FF;"></span>🔵 BLUE: Data spread (how much variability there is in the data)</p>
+                    
+                    <div class="viz-detail">
+                        <h5>LED Brightness Meaning:</h5>
+                        <div class="brightness-scale">
+                            <span>Low</span>
+                            <div class="brightness-bar"></div>
+                            <span>High</span>
+                        </div>
+                        <p><strong>🔴 Red Brightness:</strong> Higher brightness = More skewed data (asymmetric distribution)</p>
+                        <p><strong>🟢 Green Brightness:</strong> Higher brightness = Mean is better centered within data range</p>
+                        <p><strong>🔵 Blue Brightness:</strong> Higher brightness = Greater data variability and spread</p>
+                        <p><em>Maximum brightness occurs when the characteristic is at its extreme value</em></p>
+                    </div>
+                </div>
+                
+                <div class="viz-card">
+                    <h4>📊 SERVO MOTORS</h4>
+                    <p>Two servo motors provide visual feedback:</p>
+                    <p>• Motor 1: Indicates mean position</p>
+                    <p>• Motor 2: Shows data spread/range</p>
+                    
+                    <div class="viz-detail">
+                        <h5>Servo Position Meaning:</h5>
+                        <div class="servo-position">
+                            <span>Min</span>
+                            <div class="servo-bar"></div>
+                            <span>Max</span>
+                        </div>
+                        <p><strong>Motor 1 (Mean Position):</strong></p>
+                        <p>• Far left (0°): Mean is at minimum value in dataset</p>
+                        <p>• Center (90°): Mean is at center of data range</p>
+                        <p>• Far right (180°): Mean is at maximum value in dataset</p>
+                        
+                        <p><strong>Motor 2 (Data Spread):</strong></p>
+                        <p>• Far left (0°): Low data spread (small range)</p>
+                        <p>• Center (90°): Moderate data spread</p>
+                        <p>• Far right (180°): High data spread (large range)</p>
+                        <p><em>Servo positions are proportional to the actual statistical values</em></p>
+                    </div>
+                </div>
+                
+                <div class="viz-card">
+                    <h4>📈 LCD HISTOGRAM</h4>
+                    <p>16×2 LCD displays real-time histogram visualization:</p>
+                    <p>• Frequency distribution bars</p>
+                    <p>• Interactive data representation</p>
+                    
+                    <div class="viz-detail">
+                        <h5>Histogram Interpretation:</h5>
+                        <p><strong>Bar Height:</strong> Represents frequency of data values in each bin</p>
+                        <p><strong>Bar Width:</strong> Shows data range intervals</p>
+                        <p><strong>Pattern Recognition:</strong></p>
+                        <p>• Tall central bars = Normal distribution</p>
+                        <p>• Skewed bars = Asymmetric distribution</p>
+                        <p>• Multiple peaks = Multi-modal distribution</p>
+                        <p><em>Histogram updates automatically as new data is entered</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example-section" id="example">
+            <div class="section-title">EXAMPLE USAGE</div>
+            <p><strong>Scenario:</strong> Analyzing test scores with frequencies</p>
+            <div class="example-data">
+                <p><strong>Data Input:</strong></p>
+                <p>• Enter score: <strong>85</strong>, Frequency: <strong>5</strong></p>
+                <p>• Enter score: <strong>90</strong>, Frequency: <strong>8</strong></p>
+                <p>• Enter score: <strong>95</strong>, Frequency: <strong>3</strong></p>
+                <p><strong>Result:</strong> The calculator computes all statistics considering frequency weights, providing accurate analysis of the weighted dataset.</p>
+                
+                <p><strong>Visualization Output:</strong></p>
+                <p>• <strong>RGB LED:</strong> Green brightness high (mean well-centered), Blue moderate (medium spread), Red low (minimal skewness)</p>
+                <p>• <strong>Servo 1:</strong> Position at ~110° (mean closer to higher values)</p>
+                <p>• <strong>Servo 2:</strong> Position at ~60° (moderate data spread)</p>
+                <p>• <strong>Histogram:</strong> Shows peak at 90 with frequency of 8</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>ISC-11 Statistics Calculator</strong> - Advanced Statistical Analysis Tool</p>
+            <p>Arduino-based with comprehensive visualization capabilities</p>
+            <p class="version">Version 1.0 | User Manual</p>
+        </div>
+    </div>
+
+</body>
+</html>
