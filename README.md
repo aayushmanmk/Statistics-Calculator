@@ -81,7 +81,7 @@ The calculator displays 10 different statistical measures:
 7. **MAD**: Mean Absolute Deviation
 8. **Median**: Middle value with visual indicator
 9. **Mode**: Most frequent value(s)
-10. **Histogram**: Visual distribution of data
+10. **Histogram**: Visual distribution of data (Note: The histogram is relative in order to show contrast between datapoints)
 
 ### Visual Indicators
 
@@ -92,6 +92,23 @@ The calculator displays 10 different statistical measures:
 - **Servos**: 
   - Mean servo position shows average value
   - Spread servo shows standard deviation
+
+### Images Of Model
+
+![2025-10-02-10-18-53-813](https://github.com/user-attachments/assets/4033d9ef-fb8c-452e-a908-f2ae367bb454)
+![2025-10-02-10-31-52-090](https://github.com/user-attachments/assets/a120838f-aa80-42cf-b437-77d23610b364)
+![2025-10-02-10-32-09-356](https://github.com/user-attachments/assets/4bf41770-6df1-40af-9a31-41dc5e7ea9d4)
+![2025-10-02-10-32-19-893](https://github.com/user-attachments/assets/94c213c1-18b5-4959-bd5c-8345e4e7245d)
+![2025-10-02-10-32-28-617](https://github.com/user-attachments/assets/f32421fd-98d7-47ae-94a8-18509b9ff4ec)
+![2025-10-02-10-32-37-332](https://github.com/user-attachments/assets/71cd7d78-a360-4e7c-9580-ea7820ceaa21)
+![2025-10-02-10-32-43-142](https://github.com/user-attachments/assets/61ae2d6f-f6d7-4a5e-bf0e-1a86b1009206)
+![2025-10-02-10-32-54-341](https://github.com/user-attachments/assets/c6237ed6-0c3c-4b52-8a32-275387a498be)
+![2025-10-02-10-33-00-495](https://github.com/user-attachments/assets/8c3b365b-d8d9-4e8c-b114-5781240c603d)
+![2025-10-02-10-33-05-323](https://github.com/user-attachments/assets/ba45834a-0171-4a30-907c-b2be881df495)
+![2025-10-02-10-33-12-219](https://github.com/user-attachments/assets/85d2fcfe-9429-445f-b12e-e1fd614f9057)
+![2025-10-02-10-41-34-845](https://github.com/user-attachments/assets/9756efb3-457a-4a47-836f-f445e0d5ddd8)
+
+
 
 ## 📝 Credits
 
