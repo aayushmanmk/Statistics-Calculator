@@ -113,3 +113,7 @@ The calculator displays 10 different statistical measures:
 ## 📝 Credits
 
 Created by Aayushman M.K
+
+## 🗒️Note
+
+This project was made for an ISC-11 project of mine for school and therefore is called an ISC-11 Statistics calculator.
