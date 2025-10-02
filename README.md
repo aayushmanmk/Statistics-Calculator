@@ -1,4 +1,4 @@
-# ISC-11 Statistics Calculator with RGB LED Data Visualization
+# 📊 ISC-11 Statistics Calculator: Visual Data Analysis with Arduino
 
 [![Arduino](https://img.shields.io/badge/Arduino-Uno-blue.svg)](https://www.arduino.cc/)
 [![Status](https://img.shields.io/badge/Status-Complete-brightgreen.svg)](https://github.com)
