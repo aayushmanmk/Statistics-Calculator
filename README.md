@@ -1,7 +1,7 @@
 # 📊 ISC-11 Statistics Calculator: Visual Data Analysis with Arduino
 
 [![Arduino](https://img.shields.io/badge/Arduino-Uno-blue.svg)](https://www.arduino.cc/)
-[![Status](https://img.shields.io/badge/Status-Complete-brightgreen.svg)](https://github.com)
+[![Status](https://img.shields.io/badge/Status-Complete-brightgreen.svg)]
 
 An advanced Arduino-based statistics calculator that provides comprehensive data analysis with visual feedback through servos, RGB LED, and LCD display.
 
